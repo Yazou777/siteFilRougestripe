@@ -102,7 +102,11 @@ $checkout_session = \Stripe\Checkout\Session::create([
     }
 
     #[Route('/order/success/{id}', name: 'payment_success')]
-    public function StripeSuccess($id): Response{
+    public function StripeSuccess(EntityManagerInterface $em,$id): Response{
+        $order = $this->em->getRepository(Commande::class)->findOneBy(['id' => $id]);
+        $order->setComIsPaid(true);
+        $em->persist($order);
+        $em->flush();
         //return $this->render('order/succes.html.twig');
         return $this->render('commande/success.html.twig');
     }
