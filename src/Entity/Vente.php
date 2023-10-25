@@ -20,19 +20,19 @@ class Vente
     #[ORM\Column(nullable: true)]
     private ?int $ven_qte1 = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     private ?string $ven_prix1 = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $ven_qte2 = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     private ?string $ven_prix2 = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $ven_qte3 = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     private ?string $ven_prix3 = null;
 
     #[ORM\ManyToOne(targetEntity: Fournisseur::class ,inversedBy: 'ventes')]

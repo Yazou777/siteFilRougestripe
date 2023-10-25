@@ -15,7 +15,7 @@ class Panier
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2)]
     private ?string $pan_prix_unite = null;
 
     #[ORM\Column]
@@ -29,7 +29,7 @@ class Panier
     #[ORM\JoinColumn(nullable: false)]
     private ?Produit $pan_pro = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     private ?string $pan_reduction = null;
 
     public function getId(): ?int

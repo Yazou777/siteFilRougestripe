@@ -19,7 +19,7 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $pro_nom = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     private ?string $pro_prix = null;
 
     #[ORM\Column(length: 255, nullable: true)]
