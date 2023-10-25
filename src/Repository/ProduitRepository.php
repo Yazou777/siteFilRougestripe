@@ -67,4 +67,25 @@ public function nbProduit($cat_id): array
     // to get just one result:
     // $product = $query->setMaxResults(1)->getOneOrNullResult();
 }
+
+  // Find/search articles by title/content
+    public function findBdByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('p.pro_nom', ':query'),
+                        $qb->expr()->like('p.pro_description', ':query'),
+                    )
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
 }
