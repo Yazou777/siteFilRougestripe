@@ -67,7 +67,9 @@ class PaymentController extends AbstractController
             'quantity' => 1,
         ];
 //dd($producStripe);
-     Stripe::setApiKey('sk_test_51O4gGGGvIgBTzRRgBa14AvfL4wgEmJzvpnGifyiZaXno0TUPKp0QnTEkKu2BJnOEg18DCGlNN9skzyl8kmi4kvLV00uyd9aRzr');
+    Stripe::setApiKey('sk_test_51O4gGGGvIgBTzRRgBa14AvfL4wgEmJzvpnGifyiZaXno0TUPKp0QnTEkKu2BJnOEg18DCGlNN9skzyl8kmi4kvLV00uyd9aRzr');
+    
+
 //header('Content-Type: application/json');
 
 //$YOUR_DOMAIN = 'http://localhost:4242';
