@@ -13,14 +13,15 @@ class SearchController extends AbstractController
     #[Route('/search', name: 'app_search')]
     public function index(Request $request, ProduitRepository $repo): Response
     {
+        //recup la valeur de l'input qui a pour name search (notre barre de recherche)
         $query = $request->request->get('search');
-        $bd =null;
+        $produit =null;
         if($query) {
-            $bd = $repo->findBdByName($query);
+            $produit = $repo->findProduitByName($query);
         }
 
         return $this->render('search/index.html.twig', [
-            'bds' => $bd
+            'produits' => $produit
         ]);
     }
 }

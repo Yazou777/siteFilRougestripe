@@ -69,7 +69,7 @@ public function nbProduit($cat_id): array
 }
 
   // Find/search articles by title/content
-    public function findBdByName(string $query)
+    public function findProduitByName(string $query)
     {
         $qb = $this->createQueryBuilder('p');
         $qb
