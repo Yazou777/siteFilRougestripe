@@ -45,7 +45,7 @@ class PaymentController extends AbstractController
         $producStripe[] = [
             'price_data' => [
                 'currency' => 'eur',
-                'unit_amount_decimal' => $product->getPanPrixUnite(),
+                'unit_amount' => $product->getPanPrixUnite() * 100,
                 'product_data' => [
                     'name' => $productData->getProNom()
                 ]
@@ -59,9 +59,9 @@ class PaymentController extends AbstractController
      $producStripe[] = [
         'price_data' => [
             'currency' => 'eur',
-            'unit_amount_decimal' => $product->getPanPrixUnite(),
+            'unit_amount' => $transporteurData->getTraPrix() * 100,
             'product_data' => [
-                'name' => $productData->getProNom()
+                'name' => $transporteurData->getTraNom()
             ]
             ],
             'quantity' => 1,
@@ -75,12 +75,12 @@ class PaymentController extends AbstractController
 $checkout_session = \Stripe\Checkout\Session::create([
     'customer_email' => $this->getUser()->getEmail(),
     'payment_method_types' => ['card'],
-    'line_items' => [
+    'line_items' => [[
         $producStripe
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
     // 'price' => '{{PRICE_ID}}',
     // 'quantity' => 1,
-  ],
+    ]],
   'mode' => 'payment',
   'success_url' => $this->generator->generate('payment_success', [
     'id' => $order->getId()
@@ -101,12 +101,14 @@ $checkout_session = \Stripe\Checkout\Session::create([
 
     #[Route('/order/success/{id}', name: 'payment_success')]
     public function StripeSuccess($id): Response{
-        return $this->render('order/succes');
+        //return $this->render('order/succes.html.twig');
+        return $this->render('commande/success.html.twig');
     }
 
     #[Route('/order/error/{id}', name: 'payment_error')]
     public function StripeError($id): Response{
-        return $this->render('order/error');
+        //return $this->render('order/error.html.twig');
+        return $this->render('commande/error.html.twig');
     }
 
 
