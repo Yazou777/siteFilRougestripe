@@ -2,27 +2,36 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[ApiResource(
+    normalizationContext: [ "groups" => ["read:product"]]
+)]
 class Produit
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["read:product"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["read:product"])]
     private ?string $pro_nom = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
+    #[Groups(["read:product"])]
     private ?string $pro_prix = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["read:product"])]
     private ?string $pro_image = null;
 
     #[ORM\Column( nullable: true, type:Types::TEXT)]
