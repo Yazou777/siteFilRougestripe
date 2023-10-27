@@ -45,6 +45,7 @@ class Produit
 
     #[ORM\ManyToOne(inversedBy: 'produits', targetEntity: Categorie::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["read:product"])]
     private ?categorie $cat = null;
 
     #[ORM\OneToMany(mappedBy: 'pro', targetEntity: Vente::class)]

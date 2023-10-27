@@ -42,6 +42,42 @@ class CategorieRepository extends ServiceEntityRepository
         // $product = $query->setMaxResults(1)->getOneOrNullResult();
     }
 
+    public function findSousCat(): array
+    {
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.cat_parent > :n')
+            ->setParameter('n', 0);
+           // ->orderBy('p.price', 'ASC');
+
+        // if (!$includeUnavailableProducts) {
+        //     $qb->andWhere('p.available = TRUE');
+        // }
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+
+        // to get just one result:
+        // $product = $query->setMaxResults(1)->getOneOrNullResult();
+    }
+    
+    public function findCatSql(): array{
+        $conn = $this->getEntityManager()->getConnection();
+
+
+        $sql = '
+            SELECT * FROM categorie p
+            WHERE p.cat_parent_id is not null
+            ';
+
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function findId($cat_nom): Categorie
     {
         $qb = $this->createQueryBuilder('p')
