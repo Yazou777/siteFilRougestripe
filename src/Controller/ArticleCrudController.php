@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/article')]
-class ArticleController extends AbstractController
+class ArticleCrudController extends AbstractController
 {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ProduitRepository $produitRepository): Response
@@ -61,6 +61,8 @@ class ArticleController extends AbstractController
     public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
+        // supprime cat du formulaire 
+       // $form->remove('cat'); 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
