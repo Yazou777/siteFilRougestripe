@@ -31,10 +31,10 @@ class ArticleCrudController extends AbstractController
         //$cat =  $categorieRepository->findCatSql();
        // dd($cat);
         $produit = new Produit();
-        // $form = $this->createForm(ProduitType::class, $produit);
-        $form = $this->createForm(ProduitType::class, $produit, options: [
-            'sousCat' =>  $cat
-        ]);
+         $form = $this->createForm(ProduitType::class, $produit);
+        // $form = $this->createForm(ProduitType::class, $produit, options: [
+        //     'sousCat' =>  $cat
+        // ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($produit);
