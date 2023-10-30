@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,6 +20,9 @@ class ProduitType extends AbstractType
             ->add('pro_nom')
             ->add('pro_prix')
             ->add('pro_image')
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image du produit'
+            ])
             ->add('pro_description')
             ->add('pro_stkphy')
             ->add('pro_stkale')
