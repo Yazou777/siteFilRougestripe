@@ -34,8 +34,8 @@ class Produit
         #[Vich\UploadableField(mapping: 'produit_images', fileNameProperty: 'pro_image')]
         private ?File $imageFile = null;
     
-        #[ORM\Column(nullable: true)]
-        private ?string $imageName = null;
+        // #[ORM\Column(nullable: true)]
+        // private ?string $imageName = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 9, scale: 2, nullable: true)]
     #[Groups(["read:product"])]
@@ -121,15 +121,15 @@ class Produit
         return $this->imageFile;
     }
 
-    public function setImageName(?string $imageName): void
-    {
-        $this->imageName = $imageName;
-    }
+    // public function setImageName(?string $imageName): void
+    // {
+    //     $this->imageName = $imageName;
+    // }
 
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
+    // public function getImageName(): ?string
+    // {
+    //     return $this->imageName;
+    // }
 
     public function getProPrix(): ?string
     {
